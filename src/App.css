@@ -1,38 +1,160 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.wallpaper {
+  width: auto;
+   height: 800px; 
+  background-image: url(./media/gate.jpg);
+  filter: blur(20px);
+ position: absolute;
+  z-index: 100;
+  
 }
+.trendingTitle {
+  margin-left: 20px;
+  font-family: 'Raleway', sans-serif;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.trendingAirportcontainer {
+  width: auto;
+  height: auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+.trendingZoom {
+  display: flex;
+  align-items: center;
+  transition: transform .2s;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.trendingZoomName {
+  padding-top: 3rem;
+}
+.trendingZoom:hover{
+  -ms-transform: scale(1.3); /* IE 9 */
+  -webkit-transform: scale(1.3); /* Safari 3-8 */
+  transform: scale(1.3); 
+  font-size: 25px;
+  
+}
+.trendingZoomTitle {
+ 
+  position: absolute;
+  transition: transform .2s;
+  height: 220px;
+  width: 220px;
+  margin: 0 auto;
+  user-select: none;
+}
+.trendingZoomTitle:hover + .trendingZoomName {
+  font-size: 15px;
+  user-select: none;
+  
+}
+
+
+
+
+.trendingAirport {
+  display: flex;
+  width: 60vw;
+  height: 30vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  font-family: raleway;
+}
+
+
+
+
+.searchContainer {
+  width: 100vw;
+  height: 500px;
+  background-image: url(./media/gate.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(30px);
+  display: flex;
+ 
+ 
+  
+}
+
+.searchBox{
+background-color: white;
+height: 300px;
+width: 600px;
+border-radius: 5px;
+margin-top: 3rem;
+margin-left: 5rem;
+padding: 10px;
+}
+.resultBox {
+  height: 100px;
+  overflow: hidden;
+  border-style: solid;
+  border: 5px;
+  border-color: red;
+
+}
+.searchBoxTitle {
+  font-size: 30px;
+  font-family: 'Raleway', sans-serif;
+}
+.bold{
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.searchBoxParagraph {
+  color: lightslategray;
+}
+
+/* ------ MODAL ---- */
+.modalContainer {
+
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.headerContainer {
+  margin-top: 3rem;
+  width: 100%;
+  height: 200px;
+  background-color: #263d69;
+ 
+}
+.headerTitle {
+ color: white;
+ font-size: 30px;
+ margin-left: 20px;
+ font-family: 'Raleway', sans-serif;
+}
+.headerAddress {
   color: white;
+  font-family: 'Raleway', sans-serif;
+  margin-left: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.reviewContainer {
+  width: 85%;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.reviewComponentContainer {
+  margin-top: 20px;
+}
+
+.MuiPaper-elevation1 {
+  box-shadow: none !important;
+}
+
+.closeButton {
+  margin-top: 2rem;
 }
