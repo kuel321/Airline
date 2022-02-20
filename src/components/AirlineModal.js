@@ -7,10 +7,12 @@ import AppBar from '@mui/material/AppBar';
 
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
+import firebase from 'firebase/compat/app';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import firebase from "firebase";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Utility } from '../utility';
 import Reviews from './Reviews';
 
 const StyledModal = styled(ModalUnstyled)`
@@ -44,7 +46,8 @@ const Backdrop = styled('div')`
 
 const style = {
 
-    width: "75%",
+    width: "80vw",
+   
     height: "80%",
     bgcolor: 'white',
     border: 'none',
@@ -59,66 +62,60 @@ const about = (
 const photos = (
     <div>Photos</div>
 )
-const reviews = (
-    <div className="reviewComponentContainer">
-        <Reviews reviewDesc={"REVIEW"} />
-    
-    </div>
-)
+
+
+
+
+
+
 
 export default function ModalUnstyledDemo(props) {
-  
-    const [open, setOpen] = React.useState(false);
+
+    const [data2, setData] = React.useState(null);
+
+    const [open, setOpen] = React.useState(true);
+    
+
     const handleOpen = () => {
-        setOpen(true);
-       console.log(props.data1);
+        setOpen(props.openModal);
+        console.log(props.data1.reviews);
+        setData(props.data1.reviews);
         var x = true;
-        const db = firebase.database();
-        console.log(props.data1);
-     /*  db.ref(props.data1[0] + '/reviews').once('value', (snapshot) => {
-            if(snapshot.val() == null){
-                db.ref(props.data1[0] + '/reviews').set({
-                    name: name,
-                    reviewDescription: reviewDescription,
-                });
-                console.log("added review to woeid");
-                console.log(snapshot.val());
-            }
-            else {console.log(snapshot.val()); }
-        });
-*/
+
+       
+
     }
     const handleClose = () => setOpen(false);
     const handleComponentPhotos = () => setBottomComponent(photos)
-    const handleComponentsReview = () => setBottomComponent(reviews)
+    const handleComponentsReview = () => setBottomComponent(null)
     const handleComponentAbout = () => setBottomComponent(about)
-    const [bottomComponent, setBottomComponent] = React.useState(reviews)
-    const [data2, setData] = React.useState(null);
-   const handleSubmit = (e) => {
-       e.preventDefault();
-       
-     const db = firebase.database();
-     const ref = db.ref(props.thiskey.toString());
-     const atRef = ref.child(props.data1.code);
-     atRef.push({
-         review: data2
-     });
-     
-   }
-   const handleInput = (e) => {
-       e.preventDefault();
-       setData(e.target.value);
-   }
+    const [bottomComponent, setBottomComponent] = React.useState(<div>
+        {props.data1.reviews.map((val, key) => {
+           console.log(val);
+            return (
+               
+                
+                <Reviews reviewDesc={val.reviewText} reviewTitle={val.firstName ?? "blank"} />
+                
+            )
+        })}
+    </div>)
+  
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+
+    }
+    const handleInput = (e) => {
+        e.preventDefault();
+        setData(e.target.value);
+    }
  
-    
-    
 
     return (
         <div>
-
-            <Button onClick={handleOpen} >
-                {props.airlineTitle}
-            </Button>
+  
+      
             <StyledModal
                 aria-labelledby="unstyled-modal-title"
                 aria-describedby="unstyled-modal-description"
@@ -132,33 +129,40 @@ export default function ModalUnstyledDemo(props) {
                             <Button onClick={handleClose}>
                                 Back
                             </Button>
+                         
 
                         </div>
                         <div className="modalContainer">
+                     
 
                             <div className="headerContainer">
                                 <p className="headerTitle">{props.airlineTitle}</p>
+                                <p className="headerName">{props.headerName}</p>
                                 <p className="headerAddress">{props.airlineAddress}</p>
+
                             </div>
                             <div className="reviewContainer">
                                 <Box sx={{ flexGrow: 1 }}>
                                     <AppBar position="static">
                                         <Toolbar>
 
- 
+
                                             <Button onClick={handleComponentsReview} color="inherit">Reviews</Button>
                                             <Button onClick={handleComponentPhotos} color="inherit">Photos</Button>
                                             <Button onClick={handleComponentAbout} color="inherit">About</Button>
                                         </Toolbar>
                                     </AppBar>
                                 </Box>
+
+                              
+                                  
                                 <div className="bottomComponent">
                                     {bottomComponent}
-                                   
+
                                     <form onSubmit={handleSubmit}>
                                         <label> Review </label>
                                         <input type="text"
-                                        onChange={handleInput} />
+                                            onChange={handleInput} />
                                         <Button type="submit">Submit</Button>
                                     </form>
                                 </div>

@@ -14,29 +14,50 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-
+import Rating from '@mui/material/Rating';
+import axios from 'axios';
+import StarIcon from '@mui/icons-material/Star';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import TextField from '@mui/material/TextField';
 
 export default function RecipeReviewCard(props) {
-  
 
+  const StyledRating = styled(Rating)({
+    "& .MuiRating-iconFilled": {
+      color: "#000000"
+    },
+    "& .MuiRating-iconHover": {
+      color: "#000000"
+    }
+  });
+
+ 
   return (
-    <Card sx={{ maxWidth: 345, boxShadow: 0}}>
-      <CardHeader sx={{boxShadow: 0, boxShadow: 'none'}}
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {props.reviewName}
-          </Avatar>
-        }
-        
-        title={props.reviewTitle}
-        subheader={props.reviewDate}
+    <Card sx={{ maxWidth: 250, minWidth: 250, boxShadow: 0, padding: 2}}>
+      <CardHeader sx={{boxShadow: 0, boxShadow: 'none', padding: 0}}
+       
+        title={props.data.firstName}
+     //  {...console.log(props.data)}
       />
+      <CardContent sx={{padding: 0, maxWidth: 100}}>
+      <StyledRating
+  name="customized-color"
+  value={props.data.starRating} readOnly
+  sx={{padding: 0}}
+  precision={0.5}
+  icon={<StarIcon fontSize="inherit" />}
+  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+/>
+</CardContent>
       
-      <CardContent>
+      <CardContent sx={{padding: 0, maxWidth: 100}} >
+
         <Typography variant="body2" color="text.secondary">
-         {props.reviewDesc}
+         {props.data.reviewText} 
+        
         </Typography>
+      
       </CardContent>
       <CardActions disableSpacing>
        

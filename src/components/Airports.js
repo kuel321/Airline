@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
+import firebase from 'firebase/compat/app';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -25,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 150,
     minWidth: 150,
     minHeight: 100,
-    maxHeight: 100,
+    maxHeight: 120,
     margin: '2rem',
   },
   media: {
     height: 50,
     maxHeight: 50,
     minHeight: 50,
-    paddingTop: '56.25%', // 16:9
+    
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -76,11 +76,14 @@ export default function RecipeReviewCard(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  
+  const handleClick = () => {
+    console.log("clicked");
+  }
   return (
       
     <Card className={classes.root}>
       <div>
+       
      
       <Modal
         aria-labelledby="transition-modal-title"
@@ -112,9 +115,9 @@ export default function RecipeReviewCard(props) {
       <CardMedia
         className={classes.media}
         image={props.img}
-        title="Paella dish"
+        onClick={props.selectedTrending}
       />
-      <CardContent>
+      <CardContent onClick={props.selectedTrending} >
         <Typography variant="h4" color="textSecondary" component="p">
         {props.name}
         </Typography>
