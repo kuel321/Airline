@@ -20,6 +20,7 @@ import StarIcon from '@mui/icons-material/Star';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
+import WashIcon from '@mui/icons-material/Wash';
 
 export default function RecipeReviewCard(props) {
     const [airlineName, setairlineName] = React.useState(null);
@@ -106,8 +107,8 @@ export default function RecipeReviewCard(props) {
                     value={props.data.starRating} readOnly
                     sx={{ padding: 0 }}
                     precision={0.5}
-                    icon={<StarIcon fontSize="inherit" />}
-                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                    icon={<WashIcon fontSize="inherit" />}
+                    emptyIcon={<WashIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                 />
             </CardContent>
 

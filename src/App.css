@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 /* --- Navbar --- */
+
+.gateandterminalReview {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 .loading {
   height: 100vh;
   width: 100vw;
@@ -42,7 +48,11 @@
 }
 /* --------- Sign in Optoins ---- */
 
-
+.gateandTerminal {
+  display: flex;
+  flex-direction: row;
+  width: 30vw;
+}
 
 .signinOptions {
 
@@ -497,6 +507,9 @@ p:hover {
 
 
 @media only screen and (max-width: 953px) {
+  .gateandTerminal {
+    width: 60vw;
+  }
   .signinOptionsContainer {
     display: block;
   }

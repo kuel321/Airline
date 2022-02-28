@@ -33,7 +33,7 @@ export default function BasicModal(props) {
 
     event.preventDefault();
     //console.log(loginData);
-    axios.post('https://localhost:7138/api/Auth/register/', {
+    axios.post('https://localhost:7138/api/Auth/register', {
       ...loginData
     })
       .then(function (response) {
@@ -66,7 +66,7 @@ export default function BasicModal(props) {
     event.preventDefault();
       
       //console.log(loginData);
-      axios.post('https://localhost:7138/api/Auth/login/', {
+      axios.post('https://localhost:7138/api/Auth/login', {
         ...loginData
       })
         .then(function (response) {

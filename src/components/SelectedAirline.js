@@ -11,6 +11,7 @@ import parse from 'html-react-parser';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import StarRating from './StarRating';
 import axios from 'axios';
+import WashIcon from '@mui/icons-material/Wash';
 
 export default class SelectedAirline extends Component {
     state = {
@@ -19,6 +20,7 @@ export default class SelectedAirline extends Component {
         wikiLocation: null,
         averageReviews: null,
         reviewData: this.props.selectedData,
+        keyData: 1,
 
     }
     handleClick = () => {
@@ -48,7 +50,8 @@ export default class SelectedAirline extends Component {
         console.log("remount");
         axios.get('https://localhost:7138/api/Airline/airplane/' + this.props.selectedData.id).then(res => {
             this.setState({
-                reviewData: res.data[0]
+                reviewData: res.data[0],
+                keyData: Math.random
             })
             
             console.log(res.data);
@@ -109,7 +112,7 @@ export default class SelectedAirline extends Component {
                                 </Box>
                                 <Grid sx={{ width: '70vw', marginBottom: '3rem' }}>
 
-                                    <div className="selectedAirlinesTab">
+                                    <div className="selectedAirlinesTab" key={this.state.keyData}>
                                         <Tab  handlepropsSignIn={this.handleSignIn} remount={this.remount} data={this.state.reviewData} summary={this.state.wikiData} id={this.props.selectedData.id} />
 
                                     </div>

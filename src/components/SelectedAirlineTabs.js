@@ -63,6 +63,8 @@ export default function BasicTabs(props) {
     dateCreated: Date,
     airlineId: props.data.id,
     starRating: 1.5,
+    terminal : "",
+    gate: "",
     userId: sessionStorage?.getItem('userId')?.replace(/['"]+/g, '') ?? "",
 
   });
@@ -144,36 +146,7 @@ export default function BasicTabs(props) {
 
     });
   }
-  const handleSubmitLogin = (event) => {
 
-    event.preventDefault();
-   // console.log(loginData);
-    axios.post('https://localhost:7138/api/airline/', {
-      ...loginData
-    })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-  }
-  const handleSubmitCreateAccount = (event) => {
-
-    event.preventDefault();
-   // console.log(loginData);
-    axios.post('https://localhost:7138/api/airline/', {
-      ...loginData
-    })
-      .then(function (response) {
-      //  console.log(response);
-      })
-      .catch(function (error) {
-      //  console.log(error);
-      });
-
-  }
 
 
   const handleSignIn = () => {
@@ -232,29 +205,23 @@ export default function BasicTabs(props) {
       
          
   }
-  
-  const handleStorage = (e) => {
-    e.preventDefault();
-    props.handlepropsSignIn();
-  //  console.log(sessionStorage.getItem('userData'))
-  }
-  const logData = () => {
-    console.log(props.data);
-  }
-  const handleSubmitForm = (event) => {
+ 
 
+  const handleSubmitForm = (event) => {
+    console.log(formData)
     event.preventDefault();   
    // console.log(formData);
-    axios.post('https://localhost:7138/api/airline/', {
+    axios.post('https://localhost:7138/api/Airline/', {
       ...formData
     })
       .then(function (response) {
-      //  console.log(response);
+        console.log(response);
         props.remount();
       })
       .catch(function (error) {
-      //  console.log(error);
+        console.log(error);
       });
+      console.log(formData);
 
   }
   //seteffectUpdate(true);
@@ -361,7 +328,7 @@ export default function BasicTabs(props) {
                     emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                   />
                 </div>
-              
+                <div className='gateandTerminal'><TextField label="Gate" type="text" name="gate"  onChange={updateFormData} ></TextField><TextField label="Terminal" type="text" name="terminal"  onChange={updateFormData} ></TextField></div>
                 <TextField label="Review" type="text" name="reviewText" multiline rows={7} fullWidth onChange={updateFormData} ></TextField>
                 <IconButton type="submit"><AddCircleIcon sx={{ fontSize: 50 }} htmlType="submit"></AddCircleIcon></IconButton>
               </form>
